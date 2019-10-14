@@ -1,15 +1,9 @@
 package com.glureau.kotshidemo
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.glureau.kotshidemo.dto.BreweryJava
-import com.glureau.kotshidemo.dto.BreweryKotlin
-import com.glureau.kotshidemo.kotshi.DemoAdapterFactory
-import com.glureau.kotshidemo.kotshi.KotshiDemoAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +15,6 @@ class MainActivity : AppCompatActivity() {
 
     private val moshi: Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
-        .add(KotshiDemoAdapterFactory)
         .build()
 
     private val api = Retrofit.Builder()
@@ -37,8 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         api.breweriesJava()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ data ->
+            .subscribe { data ->
                 tvJava.text = data.toString()
-            })
+            }
     }
 }
