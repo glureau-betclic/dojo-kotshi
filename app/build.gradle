@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     signingConfigs {
         release {
-            storeFile file('/Users/greg/projects/AndroidSandbox/KotshiDemo/keystore_release')
+            storeFile file('../keystore_release')
             storePassword 'keystore_release'
             keyAlias = 'keystore_release'
             keyPassword 'keystore_release'
